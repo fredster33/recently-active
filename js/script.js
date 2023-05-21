@@ -61,10 +61,12 @@ document.addEventListener( "DOMContentLoaded", function() {
             var users = uniq( rcData.query.recentchanges.map( function ( entry ) { return entry.user; } ) );
 
             // Apply opt-out
+            /*
             var optOutList = JSON.parse( optOutData.query.pages[0].revisions[0].slots.main.content );
             users = users.filter( function ( user ) {
                 return optOutList.indexOf( user ) < 0;
             } );
+            */
 
             var userInfoPromises = users.map( function ( user ) {
                 return loadJsonp( API_ROOT + "?action=query&list=users&usprop=editcount|groups&ususers=" + encodeURIComponent( user ) + API_SUFFIX );
