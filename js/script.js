@@ -1,7 +1,7 @@
 document.addEventListener( "DOMContentLoaded", function() {
-    const API_ROOT = "https://en.wikipedia.org/w/api.php",
+    const API_ROOT = "https://meta.wikimedia.org/w/api.php",
           API_SUFFIX = "&formatversion=2&format=json&callback=?&continue=",
-          OPT_OUT_LIST = "User:Enterprisey/recently-active-opt-out.json",
+          OPT_OUT_LIST = "User:Frostly/recently-active-opt-out.json",
           EDIT_COUNT_THRESHOLD = 10000;
 
     function applyUrlFilter() {
@@ -53,7 +53,7 @@ document.addEventListener( "DOMContentLoaded", function() {
 
             if( !optOutData.query || !optOutData.query.pages[0].revisions[0].slots.main.content ) {
                 console.error(optOutData);
-                document.getElementById( "error" ).innerHTML = "Error loading opt-out list at <a href='https://en.wikipedia.org/wiki/" + OPT_OUT_LIST + "'>" + OPT_OUT_LIST + "</a>!";
+                document.getElementById( "error" ).innerHTML = "Error loading opt-out list at <a href='https://meta.wikimedia.org/wiki/" + OPT_OUT_LIST + "'>" + OPT_OUT_LIST + "</a>!";
                 return;
             }
 
@@ -126,13 +126,13 @@ document.addEventListener( "DOMContentLoaded", function() {
     function makeUserCell ( username ) {
         var encUsername = encodeURIComponent( username ).replace( "'", "%27" ),
             escQuotUsername = username.replace( "'", "&#39" );
-        return "<td><a href='https://en.wikipedia.org/wiki/User:" + encUsername +
-            "' title='Wikipedia user page of " + escQuotUsername + "'>" +
-            username + "</a> (<a href='https://en.wikipedia.org/wiki/User talk:" +
-            encUsername + "' title='Wikipedia user talk page of " +
+        return "<td><a href='https://meta.wikimedia.org/wiki/User:" + encUsername +
+            "' title='Meta user page of " + escQuotUsername + "'>" +
+            username + "</a> (<a href='https://meta.wikimedia.org/wiki/User talk:" +
+            encUsername + "' title='Meta user talk page of " +
             escQuotUsername + "'>talk</a> &middot; <a " +
-            "href='https://en.wikipedia.org/wiki/Special:Contributions/" +
-            encUsername + "' title='Wikipedia contributions of " +
+            "href='https://meta.wikimedia.org/wiki/Special:Contributions/" +
+            encUsername + "' title='Meta contributions of " +
             escQuotUsername + "'>contribs</a>)</td>";
     }
 
